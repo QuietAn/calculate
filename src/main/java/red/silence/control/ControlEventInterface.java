@@ -1,7 +1,5 @@
 package red.silence.control;
 
-import java.util.List;
-
 /**
  * 事件控制器--任务结果的合并，任务分发
  * @author Quiet
@@ -9,15 +7,19 @@ import java.util.List;
  */
 public interface ControlEventInterface {
     /**
-     * 结果集合并处理
-     * @param results 结果集
-     * @param taskEventInterface //任务线程事件控制器
+     * 任务计算结果合并
+     * @param taskInterface 任务
      */
-    void resultMmerge(List<Object> results, TaskEventInterface taskEventInterface);
+    void resultMmerge(TaskInterface taskInterface);
 
     /**
      * 任务分发控制器
      * @param taskEventInterface //任务线程事件控制器
      */
-    void allocatingTask(TaskEventInterface taskEventInterface);
+    boolean allocatingTask(TaskEventInterface taskEventInterface);
+
+    /**
+     * 任务线程退出
+     */
+    void threadExit();
 }

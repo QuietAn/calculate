@@ -1,7 +1,5 @@
 package red.silence.control;
 
-import java.util.List;
-
 /**
  * 任务线程事件控制器
  * @author Quiet
@@ -10,9 +8,9 @@ import java.util.List;
 public interface TaskEventInterface {
     /**
      * 任务分发
-     * @param tasks 任务集
+     * @param taskInterface 任务
      */
-    void allocatingTask(List<Object> tasks);
+    void allocatingTask(TaskInterface taskInterface);
 
     /**
      * 任务计算完成
