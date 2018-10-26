@@ -1,8 +1,13 @@
 package red.silence;
 
 import red.silence.control.Control;
-import red.silence.control.TaskTread;
+import red.silence.control.TaskControlInterface;
+import red.silence.control.ThreadPam;
 import red.silence.reference.TaskControlImpl;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /**
  * Hello world!
@@ -11,11 +16,12 @@ import red.silence.reference.TaskControlImpl;
 public class TaskMain
 {
     public static void main(String[] args) {
-        Control control = new Control(new TaskControlImpl());
-        for(int i=0; i<10 && control.hasTask(); i++) {
-            Thread thread = new Thread(new TaskTread(control.getControl()));
+        List<TaskControlInterface> taskControls = new ArrayList<>();
+        taskControls.add(new TaskControlImpl());
+        taskControls.add(new TaskControlImpl(new Random()));
 
-            thread.start();
-        }
+        ThreadPam threadPam = new ThreadPam(10, taskControls);
+
+        Control.run(threadPam);
     }
 }
